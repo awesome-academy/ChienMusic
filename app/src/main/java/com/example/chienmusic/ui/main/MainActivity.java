@@ -1,8 +1,10 @@
-package com.example.chienmusic;
+package com.example.chienmusic.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.chienmusic.R;
 
 public class MainActivity extends AppCompatActivity {
 
