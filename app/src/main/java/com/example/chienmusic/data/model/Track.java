@@ -11,6 +11,8 @@ public class Track {
     private int mDuration;
     private int mDownloadCount;
     private boolean mIsDownloadable;
+    private User mUser;
+    private String mArtist;
 
     public Track(Builder builder) {
         mArtworkUrl = builder.mArtworkUrl;
@@ -23,6 +25,8 @@ public class Track {
         mDuration = builder.mDuration;
         mDownloadCount = builder.mDownloadCount;
         mIsDownloadable = builder.mIsDownloadable;
+        mUser = builder.mUser;
+        mArtist = builder.mArtist;
     }
 
     public static class Builder {
@@ -36,6 +40,8 @@ public class Track {
         private int mDuration;
         private int mDownloadCount;
         private boolean mIsDownloadable;
+        private User mUser;
+        private String mArtist;
 
         public Builder withArtworkUrl(String artworkUrl) {
             this.mArtworkUrl = artworkUrl;
@@ -87,88 +93,114 @@ public class Track {
             return this;
         }
 
+        public Builder withUser(User user) {
+            this.mUser = user;
+            return this;
+        }
+
+        public Builder withArtist(String artist) {
+            this.mArtist = artist;
+            return this;
+        }
+
         public Track builder() {
             return new Track(this);
         }
     }
 
-    public String getmArtworkUrl() {
+    public String getArtworkUrl() {
         return mArtworkUrl;
     }
 
-    public void setmArtworkUrl(String mArtworkUrl) {
-        this.mArtworkUrl = mArtworkUrl;
+    public void setArtworkUrl(String artworkUrl) {
+        mArtworkUrl = artworkUrl;
     }
 
-    public String getmTitle() {
+    public String getTitle() {
         return mTitle;
     }
 
-    public void setmTitle(String mTitle) {
-        this.mTitle = mTitle;
+    public void setTitle(String title) {
+        mTitle = title;
     }
 
-    public String getmGenre() {
+    public String getGenre() {
         return mGenre;
     }
 
-    public void setmGenre(String mGenre) {
-        this.mGenre = mGenre;
+    public void setGenre(String genre) {
+        mGenre = genre;
     }
 
-    public String getmPermalinkUrl() {
+    public String getPermalinkUrl() {
         return mPermalinkUrl;
     }
 
-    public void setmPermalinkUrl(String mPermalinkUrl) {
-        this.mPermalinkUrl = mPermalinkUrl;
+    public void setPermalinkUrl(String permalinkUrl) {
+        mPermalinkUrl = permalinkUrl;
     }
 
-    public String getmUri() {
+    public String getUri() {
         return mUri;
     }
 
-    public void setmUri(String mUri) {
-        this.mUri = mUri;
+    public void setUri(String uri) {
+        mUri = uri;
     }
 
-    public String getmStreamUrl() {
+    public String getStreamUrl() {
         return mStreamUrl;
     }
 
-    public void setmStreamUrl(String mStreamUrl) {
-        this.mStreamUrl = mStreamUrl;
+    public void setStreamUrl(String streamUrl) {
+        mStreamUrl = streamUrl;
     }
 
-    public int getmId() {
+    public int getId() {
         return mId;
     }
 
-    public void setmId(int mId) {
-        this.mId = mId;
+    public void setId(int id) {
+        mId = id;
     }
 
-    public int getmDuration() {
+    public int getDuration() {
         return mDuration;
     }
 
-    public void setmDuration(int mDuration) {
-        this.mDuration = mDuration;
+    public void setDuration(int duration) {
+        mDuration = duration;
     }
 
-    public int getmDownloadCount() {
+    public int getDownloadCount() {
         return mDownloadCount;
     }
 
-    public void setmDownloadCount(int mDownloadCount) {
-        this.mDownloadCount = mDownloadCount;
+    public void setDownloadCount(int downloadCount) {
+        mDownloadCount = downloadCount;
     }
 
-    public boolean ismIsDownloadable() {
+    public boolean isDownloadable() {
         return mIsDownloadable;
     }
 
-    public void setmIsDownloadable(boolean mIsDownloadable) {
-        this.mIsDownloadable = mIsDownloadable;
+    public void setDownloadable(boolean downloadable) {
+        mIsDownloadable = downloadable;
+    }
+
+    public User getUser() {
+        return mUser;
+    }
+
+    public void setUser(User user) {
+        mUser = user;
+    }
+
+    public String getArtist() {
+        return mArtist;
+    }
+
+    public void setArtist(String artist) {
+        mArtist = artist;
     }
 }
