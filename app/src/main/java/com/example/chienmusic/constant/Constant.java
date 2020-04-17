@@ -9,5 +9,4 @@ public class Constant {
     public static final String URL_TRACK = "/tracks?";
     public static final String URL_CLIENT_ID = "client_id=";
     public static final String API_KEY = BuildConfig.API_KEY;
-
 }
