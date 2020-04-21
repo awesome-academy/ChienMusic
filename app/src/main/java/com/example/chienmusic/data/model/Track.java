@@ -1,17 +1,48 @@
 package com.example.chienmusic.data.model;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
+import com.example.chienmusic.R;
+import com.google.gson.annotations.SerializedName;
+
 public class Track {
+    @SerializedName("artwork_url")
     private String mArtworkUrl;
+
+    @SerializedName("title")
     private String mTitle;
+
+    @SerializedName("genre")
     private String mGenre;
+
+    @SerializedName("permalink_url")
     private String mPermalinkUrl;
+
+    @SerializedName("uri")
     private String mUri;
+
+    @SerializedName("stream_url")
     private String mStreamUrl;
+
+    @SerializedName("id")
     private int mId;
+
+    @SerializedName("duration")
     private int mDuration;
+
+    @SerializedName("download_count")
     private int mDownloadCount;
+
+    @SerializedName("downloadable")
     private boolean mIsDownloadable;
+
+    @SerializedName("user")
     private User mUser;
+
+    @SerializedName("username")
     private String mArtist;
 
     public Track(Builder builder) {
@@ -110,6 +141,11 @@ public class Track {
 
     public String getArtworkUrl() {
         return mArtworkUrl;
+    }
+
+    @BindingAdapter({"mAvatarTrackUrl"})
+    public static void loadImageTrack(ImageView view, String imgUrl) {
+        Glide.with(view.getContext()).load(imgUrl).placeholder(R.drawable.track_image_1).into(view);
     }
 
     public void setArtworkUrl(String artworkUrl) {

@@ -1,9 +1,23 @@
 package com.example.chienmusic.data.model;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
+import com.google.gson.annotations.SerializedName;
+
 public class User {
+    @SerializedName("id")
     private String mId;
+
+    @SerializedName("username")
     private String mName;
+
+    @SerializedName("avatar_url")
     private String mAvatarUrl;
+
+    @SerializedName("permalink_url")
     private String mLinkUser;
 
     public User() {
@@ -35,6 +49,11 @@ public class User {
 
     public String getAvatarUrl() {
         return mAvatarUrl;
+    }
+
+    @BindingAdapter({"mAvatarUserUrl"})
+    public static void loadImageUser(ImageView view, String imgUrl) {
+        Glide.with(view.getContext()).load(imgUrl).into(view);
     }
 
     public void setAvatarUrl(String avatarUrl) {
