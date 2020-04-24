@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="home"
             type="com.example.chienmusic.ui.home.HomeFragment" />
@@ -23,11 +24,11 @@
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/collapsing_toolbar"
-                android:fitsSystemWindows="true"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:contentScrim="@color/color_primary_dark"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/color_primary_dark"
+                app:layout_scrollFlags="scroll|enterAlways">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraint_title"
@@ -42,7 +43,7 @@
                         android:layout_marginLeft="@dimen/dp_8"
                         android:layout_marginTop="@dimen/dp_8"
                         android:text="@string/title_home_screen"
-                        android:textColor="@color/color_black"
+                        android:textColor="@color/color_white"
                         android:textSize="@dimen/sp_18"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +65,7 @@
                         android:id="@+id/imageView"
                         android:layout_width="@dimen/dp_32"
                         android:layout_height="@dimen/dp_32"
-                        android:layout_marginTop="@dimen/dp_8"
+                        android:layout_marginTop="@dimen/dp_12"
                         android:layout_marginRight="@dimen/dp_32"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -74,9 +75,9 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/toolbar"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
@@ -85,21 +86,51 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/scroll"
             android:clipToPadding="false"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.cardview.widget.CardView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardElevation="@dimen/dp_6"
-                app:cardUseCompatPadding="true">
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/linear_genres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dp_4"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:layout_weight="8"
+                        android:gravity="center_vertical"
+                        android:text="@string/genre_title"
+                        android:textColor="@color/color_purple_1"
+                        android:textSize="@dimen/sp_14" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_genres"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:layout_weight="2"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:reverseLayout="false" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_below="@id/linear_genres"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:weightSum="10">
@@ -109,10 +140,11 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/dp_4"
                         android:layout_marginTop="@dimen/dp_4"
+                        android:layout_marginBottom="@dimen/dp_4"
                         android:layout_weight="8"
                         android:gravity="center_vertical"
                         android:text="@string/all_song"
-                        android:textColor="@color/color_black"
+                        android:textColor="@color/color_purple_1"
                         android:textSize="@dimen/sp_14" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -121,12 +153,13 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/dp_4"
                         android:layout_weight="2"
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:reverseLayout="false" />
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>
 

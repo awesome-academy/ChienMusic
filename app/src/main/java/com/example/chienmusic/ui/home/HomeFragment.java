@@ -15,7 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chienmusic.R;
 import com.example.chienmusic.data.model.Track;
+import com.example.chienmusic.data.repository.GenreRepository;
+import com.example.chienmusic.data.source.local.genres.LocalGenresDataSource;
 import com.example.chienmusic.databinding.FragmentHomeBinding;
+import com.example.chienmusic.ui.home.adapter.GenreAdapter;
 import com.example.chienmusic.ui.home.adapter.TrackAdapter;
 import com.example.chienmusic.viewmodel.HomeViewModel;
 
@@ -23,7 +26,10 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     private RecyclerView mRecyclerTrack;
+    private RecyclerView mRecyclerGenres;
+    private GenreRepository mGenreRepository;
     private TrackAdapter mTrackAdapter;
+    private GenreAdapter mGenreAdapter;
     private FragmentHomeBinding mHomeBinding;
     private HomeViewModel mHomeViewModel;
 
@@ -37,11 +43,22 @@ public class HomeFragment extends Fragment {
                 false
         );
         mHomeBinding.setHome(this);
-        setUpRecycler();
+        setUpRecyclerTrack();
+        setUpRecyclerGenres();
         return mHomeBinding.getRoot();
     }
 
-    private void setUpRecycler() {
+    private void setUpRecyclerGenres() {
+        mRecyclerGenres = mHomeBinding.recyclerGenres;
+        mGenreAdapter = new GenreAdapter();
+        mHomeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
+        mHomeViewModel.initViewModel(getContext());
+        mGenreRepository = GenreRepository.getInstance(new LocalGenresDataSource());
+        mGenreAdapter.setData(mGenreRepository.getGenres());
+        mRecyclerGenres.setAdapter(mGenreAdapter);
+    }
+
+    private void setUpRecyclerTrack() {
         mRecyclerTrack = mHomeBinding.recyclerAllSong;
         mTrackAdapter = new TrackAdapter();
         mHomeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
