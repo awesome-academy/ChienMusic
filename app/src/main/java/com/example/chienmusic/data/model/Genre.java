@@ -1,5 +1,11 @@
 package com.example.chienmusic.data.model;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
+
 public class Genre {
     private String mTitle;
     private int mImage;
@@ -23,6 +29,11 @@ public class Genre {
 
     public int getImage() {
         return mImage;
+    }
+
+    @BindingAdapter({"mAvatarGenresLocal"})
+    public static void loadImageGenresLocal(ImageView view, int image) {
+        Glide.with(view.getContext()).load(image).into(view);
     }
 
     public void setImage(int image) {
