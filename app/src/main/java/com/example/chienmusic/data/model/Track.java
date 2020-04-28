@@ -1,14 +1,17 @@
 package com.example.chienmusic.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.ImageView;
 
+import androidx.databinding.BaseObservable;
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
 import com.example.chienmusic.R;
 import com.google.gson.annotations.SerializedName;
 
-public class Track {
+public class Track extends BaseObservable implements Parcelable {
     @SerializedName("artwork_url")
     private String mArtworkUrl;
 
@@ -45,6 +48,9 @@ public class Track {
     @SerializedName("username")
     private String mArtist;
 
+    @SerializedName("created_at")
+    private String mCreateAt;
+
     public Track(Builder builder) {
         mArtworkUrl = builder.mArtworkUrl;
         mTitle = builder.mTitle;
@@ -58,6 +64,55 @@ public class Track {
         mIsDownloadable = builder.mIsDownloadable;
         mUser = builder.mUser;
         mArtist = builder.mArtist;
+        mCreateAt = builder.mCreateAt;
+    }
+
+    protected Track(Parcel in) {
+        mArtworkUrl = in.readString();
+        mTitle = in.readString();
+        mGenre = in.readString();
+        mPermalinkUrl = in.readString();
+        mUri = in.readString();
+        mStreamUrl = in.readString();
+        mId = in.readInt();
+        mDuration = in.readInt();
+        mDownloadCount = in.readInt();
+        mIsDownloadable = in.readByte() != 0;
+        mArtist = in.readString();
+        mCreateAt = in.readString();
+    }
+
+    public static final Creator<Track> CREATOR = new Creator<Track>() {
+        @Override
+        public Track createFromParcel(Parcel in) {
+            return new Track(in);
+        }
+
+        @Override
+        public Track[] newArray(int size) {
+            return new Track[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mArtworkUrl);
+        dest.writeString(mTitle);
+        dest.writeString(mGenre);
+        dest.writeString(mPermalinkUrl);
+        dest.writeString(mUri);
+        dest.writeString(mStreamUrl);
+        dest.writeInt(mId);
+        dest.writeInt(mDuration);
+        dest.writeInt(mDownloadCount);
+        dest.writeByte((byte) (mIsDownloadable ? 1 : 0));
+        dest.writeString(mArtist);
+        dest.writeString(mCreateAt);
     }
 
     public static class Builder {
@@ -73,6 +128,7 @@ public class Track {
         private boolean mIsDownloadable;
         private User mUser;
         private String mArtist;
+        private String mCreateAt;
 
         public Builder withArtworkUrl(String artworkUrl) {
             this.mArtworkUrl = artworkUrl;
@@ -131,6 +187,11 @@ public class Track {
 
         public Builder withArtist(String artist) {
             this.mArtist = artist;
+            return this;
+        }
+
+        public Builder withCreateAt(String createAt) {
+            this.mCreateAt = createAt;
             return this;
         }
 
@@ -238,5 +299,13 @@ public class Track {
 
     public void setArtist(String artist) {
         mArtist = artist;
+    }
+
+    public String getCreateAt() {
+        return mCreateAt;
+    }
+
+    public void setCreateAt(String createAt) {
+        mCreateAt = createAt;
     }
 }

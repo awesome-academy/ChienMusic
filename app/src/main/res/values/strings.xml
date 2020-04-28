@@ -38,4 +38,8 @@
     <string name="recent_title">Gần Đây</string>
     <string name="title_home_screen">Hey You</string>
     <string name="title_question_home_screen">what shall we play ?</string>
+    <string name="notification_lyrics">Chưa có lời cho bài hát này</string>
+    <string name="genre">Thể Loại</string>
+    <string name="create_at">Khởi Tạo</string>
+    <string name="title_track_follow_artist">Bài Hát Tương Tự</string>
 </resources>

@@ -9,4 +9,7 @@ public class Constant {
     public static final String URL_TRACK = "/tracks?";
     public static final String URL_CLIENT_ID = "client_id=";
     public static final String API_KEY = BuildConfig.API_KEY;
+    public static final String BUNDLE_TRACK = "track";
+    public static final String BUNDLE_USER = "user";
+    public static final int EVENT_DELAY = 100;
 }
