@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chienmusic.R;
+import com.example.chienmusic.constant.Handle;
 import com.example.chienmusic.data.model.Track;
 import com.example.chienmusic.databinding.ItemTrackBinding;
 
@@ -17,10 +18,15 @@ import java.util.List;
 public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> {
 
     private List<Track> mTracks;
+    private static Handle.handleClickTrack sHandleClickTrack;
 
     public void setData(List<Track> tracks) {
         mTracks = tracks;
         notifyDataSetChanged();
+    }
+
+    public void setHandleClickTrack(Handle.handleClickTrack handleClickTrack) {
+        sHandleClickTrack = handleClickTrack;
     }
 
     @NonNull
@@ -57,7 +63,14 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
             binding.getRoot().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    if (sHandleClickTrack == null) {
+                        return;
+                    }
+                    sHandleClickTrack.onClickTrackListener(
+                            mBinding.getTrack(),
+                            mBinding.getTrack().getUser(),
+                            getAdapterPosition()
+                    );
                 }
             });
         }
